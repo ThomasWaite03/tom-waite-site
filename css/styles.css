@@ -11405,6 +11405,25 @@ header.masthead hr {
   margin-left: 0rem;
   max-width: 19.5rem;
 }
+@media (max-width: 599px) {
+  header.masthead {
+    padding-bottom: 0.25rem;
+    margin-top: 1rem;
+  }
+  header.masthead a, header.masthead hr {
+    display: none;
+  }
+}
+@media (min-width: 600px) and (max-width: 991px) {
+  header.masthead {
+    padding-bottom: 0rem;
+    margin-top: 4rem;
+    background-position: center 35%;
+  }
+  header.masthead a, header.masthead hr {
+    display: none;
+  }
+}
 @media (min-width: 992px) {
   header.masthead {
     height: 100vh;
