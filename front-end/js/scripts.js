@@ -126,24 +126,23 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
     // When user clicks send, call the API to send the message
+    var apigClient = apigClientFactory.newClient();
     sendButton.addEventListener('click', () => {
         if (isValidMessageForm()) {
-            const message = new FormData();
-            message.append('name', nameInput.value);
-            message.append('email', emailInput.value);
-            message.append('message', messageInput.value);
+            var params = {};
+            var body = {
+                "name": nameInput.value,
+                "email": emailInput.value,
+                "message": emailInput.value
+            };
+            var additionalParams = {};
 
-            fetch('https://example.com/posts', {
-              method: 'POST',
-              body: message,
-            })
-              .then((response) => response.json())
-              .then((result) => {
-                console.log('Message successfully sent:', result);
-              })
-              .catch((error) => {
-                console.error('Error:', error);
-              });
+            apigClient.sendMessagePost(params, body, additionalParams)
+                .then(function(result) {
+                    console.log('success!');
+                }).catch(function(result) {
+                    console.error('error!!!');
+                });
         }
     });
 
