@@ -64,13 +64,30 @@ window.addEventListener('DOMContentLoaded', event => {
     const messageInput = document.body.querySelector('#message');
 
     // Clear any previous data
-    nameInput.value = "";
-    emailInput.value = "";
-    messageInput.value = "";
+    function resetContactForm() {
+        nameInput.value = "";
+        emailInput.value = "";
+        messageInput.value = "";
+
+        nameInput.required = false;
+        emailInput.required = false;
+        messageInput.required = false;
+    }
+
+    function makeContactFormRequired() {
+        nameInput.required = true;
+        emailInput.required = true;
+        messageInput.required = true;
+    }
+    
 
     // When user clicks send, call the API to send the message
     var apigClient = apigClientFactory.newClient();
     sendButton.addEventListener('click', () => {
+        // Set all contact form fields to required in case user hasn't begun entering data
+        makeContactFormRequired();
+
+        // If the form is valid, send the message to the API
         if (contactForm.checkValidity()) {
             var params = {};
             var body = {
@@ -86,9 +103,7 @@ window.addEventListener('DOMContentLoaded', event => {
                     console.log('Message sent successfully.');
 
                     // Clear the form
-                    nameInput.value = "";
-                    emailInput.value = "";
-                    messageInput.value = "";
+                    resetContactForm();
 
                     // Display success message and hide error message if visible
                     submitSuccessMessage.classList = [];
