@@ -57,78 +57,21 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
     // Get references to all elements that are used for sending a message
+    const contactForm = document.body.querySelector('#contactForm');
     const sendButton = document.body.querySelector('#sendButton');
     const nameInput = document.body.querySelector('#name');
     const emailInput = document.body.querySelector('#email');
     const messageInput = document.body.querySelector('#message');
-
-    // Get references to all error message elements
-    const nameRequiredErrorMsg = document.body.querySelector('#name-error-required');
-    const emailRequiredErrorMsg = document.body.querySelector('#email-error-required');
-    const emailInvalidErrorMsg = document.body.querySelector('#email-error-invalid');
-    const messageRequiredErrorMsg = document.body.querySelector('#message-error-required');
-
-
-    // Initially disable the button and hide error messages
-    sendButton.disabled = true;
 
     // Clear any previous data
     nameInput.value = "";
     emailInput.value = "";
     messageInput.value = "";
 
-    // Function that clears all error messages
-    function clearErrorMessages() {
-        nameRequiredErrorMsg.hidden = true;
-        emailRequiredErrorMsg.hidden = true;
-        emailInvalidErrorMsg.hidden = true;
-        messageRequiredErrorMsg.hidden = true;
-    }
-
-    clearErrorMessages();
-
-    // Function that validates form input for sending messages
-    function isValidMessageForm() {
-        clearErrorMessages();
-
-        if (nameInput.value && messageInput.value && emailInput.value && emailInput.value.includes('@')) {
-            sendButton.disabled = false;
-            return true;
-        } else {
-            sendButton.disabled = true;
-            return false;
-        }
-    }
-
-    // Set event listeners, so that the validation method is called after each edit
-    nameInput.addEventListener('change', () => {
-        if (!isValidMessageForm() && !nameInput.value) {
-            nameRequiredErrorMsg.hidden = false;
-        }
-    });
-
-    emailInput.addEventListener('change', () => {
-        if (!isValidMessageForm()) {
-            if (!emailInput.value) {
-                emailRequiredErrorMsg.hidden = false;
-            }
-
-            if (!emailInput.value.includes('@')) {
-                emailInvalidErrorMsg.hidden = false;
-            }
-        }
-    });
-
-    messageInput.addEventListener('change', () => {
-        if (!isValidMessageForm() && !messageInput.value) {
-            messageRequiredErrorMsg.hidden = false;
-        }
-    });
-
     // When user clicks send, call the API to send the message
     var apigClient = apigClientFactory.newClient();
     sendButton.addEventListener('click', () => {
-        if (isValidMessageForm()) {
+        if (contactForm.checkValidity()) {
             var params = {};
             var body = {
                 "name": nameInput.value,
@@ -141,8 +84,21 @@ window.addEventListener('DOMContentLoaded', event => {
                 apigClient.sendMessagePost(params, body, additionalParams)
                 .then(function(result) {
                     console.log('Message sent successfully.');
+
+                    // Clear the form
+                    nameInput.value = "";
+                    emailInput.value = "";
+                    messageInput.value = "";
+
+                    // Display success message and hide error message if visible
+                    submitSuccessMessage.classList = [];
+                    submitErrorMessage.classList = ["d-none"];
                 }).catch(function(result) {
                     console.error('Error: message could not be sent.');
+
+                    // Display error message and hide success message if visible
+                    submitSuccessMessage.classList = ["d-none"];
+                    submitErrorMessage.classList = [];
                 });
             })();
         }

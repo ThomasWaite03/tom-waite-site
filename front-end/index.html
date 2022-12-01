@@ -17,6 +17,12 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!-- Script to modify validation process-->
+        <script>
+            function requireInput(event) {
+                event.target.required = true;
+            }
+        </script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -118,43 +124,36 @@
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                     <div class="col-lg-6">
-                        <form id="contactForm">
+                        <form id="contactForm" class="was-validated">
                             <!-- Name input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." />
+                                <input class="form-control is-valid" id="name" type="text" onchange="requireInput(event);" placeholder="Enter your name..." />
                                 <label for="name">Name</label>
-                                <div class="invalid-feedback" id="name-error-required">A name is required.</div>
+                                <div class="invalid-feedback" id="name-error-required">Please enter your name.</div>
                             </div>
                             <!-- Email address input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="name@example.com" />
+                                <input class="form-control" id="email" type="email" onchange="requireInput(event);" placeholder="name@example.com" />
                                 <label for="email">Email address</label>
-                                <div class="invalid-feedback" id="email-error-required">An email is required.</div>
-                                <div class="invalid-feedback" id="email-error-invalid">Email is not valid.</div>
+                                <div class="invalid-feedback" id="email-error-required">Please enter a valid email address.</div>
                             </div>
                             <!-- Message input-->
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem"></textarea>
+                                <textarea class="form-control" id="message" type="text" onchange="requireInput(event);" placeholder="Enter your message here..." style="height: 10rem"></textarea>
                                 <label for="message">Message</label>
-                                <div class="invalid-feedback" id="message-error-required">A message is required.</div>
+                                <div class="invalid-feedback" id="message-error-required">Please enter a message.</div>
                             </div>
                             <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
                             <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
+                                <div class="text-center text-success mb-3">
+                                    <div class="fw-bolder">Message sent successfully!</div>
                                 </div>
                             </div>
                             <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error: message could not be sent.</div></div>
+                            <!-- Submit Button-->
+                            <div class="d-grid"><button class="btn btn-primary btn-xl" id="sendButton" type="submit" onsubmit="() => {};">Send</button></div>
                         </form>
-                        <!-- Submit Button-->
-                        <div class="d-grid"><button class="btn btn-primary btn-xl" id="sendButton">Send</button></div>
                     </div>
                 </div>
             </div>
