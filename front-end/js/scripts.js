@@ -133,16 +133,18 @@ window.addEventListener('DOMContentLoaded', event => {
             var body = {
                 "name": nameInput.value,
                 "email": emailInput.value,
-                "message": emailInput.value
+                "message": messageInput.value
             };
             var additionalParams = {};
 
-            apigClient.sendMessagePost(params, body, additionalParams)
+            (async function () {
+                apigClient.sendMessagePost(params, body, additionalParams)
                 .then(function(result) {
-                    console.log('success!');
+                    console.log('Message sent successfully.');
                 }).catch(function(result) {
-                    console.error('error!!!');
+                    console.error('Error: message could not be sent.');
                 });
+            })();
         }
     });
 
