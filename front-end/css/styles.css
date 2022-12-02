@@ -11421,7 +11421,7 @@ header.masthead hr {
     background-size: cover;
     padding-bottom: 0.25rem;
     margin-top: 1rem;
-    padding-top: 24rem;
+    padding-top: 50vh;
     height: 100vh;
   }
   header.masthead a, header.masthead hr {
@@ -11430,6 +11430,7 @@ header.masthead hr {
 }
 @media (min-width: 600px) and (max-width: 991px) {
   header.masthead {
+    padding-top: 35vh;
     padding-bottom: 0rem;
     margin-top: 4rem;
     background-position: center 35%;
