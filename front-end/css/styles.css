@@ -11404,7 +11404,6 @@ header.masthead {
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
-  height: 100vh;
 }
 header.masthead h1, header.masthead .h1 {
   font-size: 2.25rem;
@@ -11415,8 +11414,15 @@ header.masthead hr {
 }
 @media (max-width: 599px) {
   header.masthead {
+    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/tom_mobile.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
     padding-bottom: 0.25rem;
     margin-top: 1rem;
+    padding-top: 24rem;
+    height: 100vh;
   }
   header.masthead a, header.masthead hr {
     display: none;
@@ -11427,6 +11433,7 @@ header.masthead hr {
     padding-bottom: 0rem;
     margin-top: 4rem;
     background-position: center 35%;
+    height: 50vh;
   }
   header.masthead a, header.masthead hr {
     display: none;
