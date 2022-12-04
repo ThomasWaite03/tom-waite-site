@@ -11462,3 +11462,8 @@ header.masthead hr {
     font-size: 3.5rem;
   }
 }
+
+#social-media-icons i {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
