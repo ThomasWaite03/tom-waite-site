@@ -61,6 +61,7 @@ window.addEventListener('DOMContentLoaded', event => {
     const sendButton = document.body.querySelector('#sendButton');
     const nameInput = document.body.querySelector('#name');
     const emailInput = document.body.querySelector('#email');
+    const organizationInput = document.body.querySelector('#organization');
     const messageInput = document.body.querySelector('#message');
 
     // Clear any previous data
@@ -68,6 +69,7 @@ window.addEventListener('DOMContentLoaded', event => {
         nameInput.value = "";
         emailInput.value = "";
         messageInput.value = "";
+        organizationInput.value = "";
 
         nameInput.required = false;
         emailInput.required = false;
@@ -93,7 +95,8 @@ window.addEventListener('DOMContentLoaded', event => {
             var body = {
                 "name": nameInput.value,
                 "email": emailInput.value,
-                "message": messageInput.value
+                "message": messageInput.value,
+                "organization": organizationInput.value
             };
             var additionalParams = {};
 

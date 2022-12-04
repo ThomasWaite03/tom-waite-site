@@ -10,9 +10,36 @@ def send_message_handler(event, context):
         body = json.loads(event["body"])
         name = body['name']
         email = body['email']
+        organization = body['organization']
         message = body['message']
         
         # Send message
+        if organization is None:
+            email_content = f"""<!DOCTYPE html>
+            <html>
+                <body>
+                    <h2>{name} sent you a message on tomwaite.me</h2>
+                    <p>
+                        <b>Name:</b> {name}<br>
+                        <b>Email:</b> {email}<br>
+                    </p>
+                    <p>{message}</p>
+                </body>
+            </html>"""
+        else:
+            email_content = f"""<!DOCTYPE html>
+            <html>
+                <body>
+                    <h2>{name} sent you a message on tomwaite.me</h2>
+                    <p>
+                        <b>Name:</b> {name}<br>
+                        <b>Email:</b> {email}<br>
+                        <b>Organization:</b> {organization}<br>
+                    </p>
+                    <p>{message}</p>
+                </body>
+            </html>"""
+        
         try:
             response = client.send_email(
                 Source='messages@tomwaite.me',
@@ -26,8 +53,8 @@ def send_message_handler(event, context):
                         'Data': f'{name} sent you a message'
                     },
                     'Body': {
-                        'Text': {
-                            'Data': f'{name} left this message on tomwaite.me: {message}'
+                        'Html': {
+                            'Data': email_content
                         }
                     }
                 },
@@ -46,7 +73,7 @@ def send_message_handler(event, context):
 def is_valid_message(body):
     body = json.loads(body)
     
-    if all([param in body for param in ['name', 'email', 'message']]):
+    if all([param in body for param in ['name', 'email', 'message', 'organization']]):
         if body['name'] is None or body['name'] == '':
             return False
         elif body['email'] is None or body['email'] == '' or '@' not in body['email']:
