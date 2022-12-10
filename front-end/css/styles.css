@@ -11522,7 +11522,7 @@ header.masthead hr {
 
 .skills-section ul li i {
   --bs-text-opacity: 1;
-  color: #06A77D !important;
+  color: var(--bs-green) !important;
 }
 
 #skills .row {
