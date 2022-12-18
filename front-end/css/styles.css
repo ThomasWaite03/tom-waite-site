@@ -11499,11 +11499,10 @@ header.masthead hr {
 }
 
 .skills-section ul {
-  list-style-type: none; 
+  list-style-type: square;
   padding: 0; 
-  margin: 0;
-  margin-top: 2rem;
-  display: inline-block; 
+  margin: 2rem 4rem 0 4rem;
+  display: inline-block;
   text-align: left;
   columns: 2;
   -webkit-columns: 2;
@@ -11511,9 +11510,8 @@ header.masthead hr {
 }
 
 .skills-section ul li {
-  list-style: none;
   position: relative;
-  padding: 0 0 2rem 1.15rem;
+  padding: 0 1.15rem 2rem 1.15rem;
   margin-bottom: 1.25rem;
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
@@ -11523,6 +11521,18 @@ header.masthead hr {
 .skills-section ul li i {
   --bs-text-opacity: 1;
   color: var(--bs-green) !important;
+}
+
+#languages ul {
+  margin-left: 6rem;
+}
+
+#technologies ul {
+  margin-left: 8rem;
+}
+
+#frameworks ul li {
+  margin-left: 2rem;
 }
 
 #skills .row {
