@@ -11531,6 +11531,20 @@ header.masthead hr {
   margin-left: 8rem;
 }
 
+@media (max-width: 499px) {
+  #technologies ul {
+    margin-left: 6rem;
+  }
+
+  .skills-section ul li {
+    padding: 0 2.75rem 2rem 0.75rem;
+  }
+
+  #technologies ul li {
+    padding: 0 2.75rem 2rem 0.75rem;
+  }
+}
+
 #frameworks ul li {
   margin-left: 2rem;
 }
