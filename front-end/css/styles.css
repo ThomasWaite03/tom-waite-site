@@ -11501,7 +11501,7 @@ header.masthead hr {
 .skills-section ul {
   list-style-type: square;
   padding: 0; 
-  margin: 2rem 4rem 0 4rem;
+  margin: 2rem 4rem 0 6rem;
   display: inline-block;
   text-align: left;
   columns: 2;
@@ -11511,7 +11511,7 @@ header.masthead hr {
 
 .skills-section ul li {
   position: relative;
-  padding: 0 1.15rem 2rem 1.15rem;
+  padding: 0 1.15rem 2rem 1.5rem;
   margin-bottom: 1.25rem;
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
@@ -11523,17 +11523,21 @@ header.masthead hr {
   color: var(--bs-green) !important;
 }
 
-#languages ul {
-  margin-left: 6rem;
-}
-
-#technologies ul {
-  margin-left: 8rem;
-}
-
 @media (max-width: 499px) {
+  #languages ul {
+    margin-left: 3rem;
+  }
+
+  #frameworks ul {
+    margin-left: 3rem;
+  }
+
   #technologies ul {
-    margin-left: 6rem;
+    margin-left: 4.5rem;
+  }
+
+  .skills-section ul {
+    margin-right: 0;
   }
 
   .skills-section ul li {
@@ -11551,6 +11555,12 @@ header.masthead hr {
 
 #skills .row {
   margin-top: 4rem;
+}
+
+@media (max-width: 499px) {
+  #skills .row {
+    margin-right: 0;
+  }
 }
 
 #skills-down-btn {
